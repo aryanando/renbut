@@ -1,0 +1,4 @@
+%%formFieldsHtml%%
+
+<div class="box-footer">
+    <input class="btn btn-{{ $formMode === 'edit' ? 'primary' : 'success' }} pull-right" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">

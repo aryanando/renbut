@@ -1,0 +1,56 @@
+@extends('layouts.app')
+
+@section('content-header')
+    <h1>
+        %%crudNameCap%%
+        <small>Master</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><i class="fa fa-database">Master</a></li>
+        <li><a href="{{ url('/master/%%modelName%%') }}"><i class="fa fa-file">%%crudNameCap%%</a></li>
+        <li class="active"><i class="fa fa-file">{{ $%%crudNameSingular%%->%%primaryKey%% }}</li>
+    </ol>
+@endsection
+
+@section('content')
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <a href="{{ url('/%%routeGroup%%%%viewName%%') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <h3 class="box-title">%%modelName%% {{ $%%crudNameSingular%%->%%primaryKey%% }}</h3>
+                        <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $%%crudNameSingular%%->%%primaryKey%% . '/edit') }}" title="Edit %%modelName%%"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                        <form method="POST" action="{{ url('%%routeGroup%%%%crudName%%' . '/' . $%%crudNameSingular%%->%%primaryKey%%) }}" accept-charset="UTF-8" style="display:inline">
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete %%modelName%%" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </form>
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>ID</th><td>{{ $%%crudNameSingular%%->%%primaryKey%% }}</td>
+                                    </tr>
+                                    %%formBodyHtmlForShowView%%
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <!-- /.box-body -->
+                </div>
+            <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+@endsection

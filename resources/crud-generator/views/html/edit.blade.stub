@@ -1,0 +1,45 @@
+@extends('layouts.app')
+
+@section('content-header')
+    <h1>
+        %%crudNameCap%%
+        <small>Master</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><i class="fa fa-database">Master</a></li>
+        <li><a href="{{ url('/master/%%modelName%%') }}"><i class="fa fa-file">%%crudNameCap%%</a></li>
+        <li class="active"><i class="fa fa-file">{{ $%%crudNameSingular%%->%%primaryKey%% }}</li>
+    </ol>
+@endsection
+
+@section('content')
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <a href="{{ url('/%%routeGroup%%%%viewName%%') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <h3 class="box-title">%%modelName%% {{ $%%crudNameSingular%%->%%primaryKey%% }}</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <form method="POST" action="{{ url('/%%routeGroup%%%%viewName%%/' . $%%crudNameSingular%%->%%primaryKey%%) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ method_field('PATCH') }}
+                            {{ csrf_field() }}
+
+                            @include ('%%viewTemplateDir%%.form', ['formMode' => 'edit'])
+
+                        </form>
+                    </div>
+                <!-- /.box-body -->
+                </div>
+            <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+@endsection
